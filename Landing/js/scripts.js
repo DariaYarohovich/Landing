@@ -25,7 +25,42 @@ ymaps.ready(function () {
     myMap.geoObjects.add(myPlacemark);
 });
 
+var BgForPopups = document.querySelector('.popup-bg');
 
+function togglePopupBg() {
+    BgForPopups.classList.toggle('popup-bg--active');
+}
 
+/*====================DESIGNER-CALL=======================*/
 
+var callToDesigner = document.querySelector('.main-header__designer--btn');
+var designerForm = document.querySelector('.popup__designer-call');
 
+callToDesigner.addEventListener('click', function () {
+    togglePopupBg();
+    designerForm.classList.add("popup__designer-call--active");
+});
+
+var closeDesignerForm = designerForm.querySelector('.catalogue__hover-close');
+
+closeDesignerForm.addEventListener('click', function () {
+    togglePopupBg();
+    designerForm.classList.remove("popup__designer-call--active");
+});
+
+/*====================SLIDER=======================*/
+
+var sliderBlock = document.querySelector('.slider__block');
+console.log(sliderBlock);
+
+addEventListener('click', function (event) {
+    var target = event.target;
+
+    console.log(target.className);
+
+    if (target.className == 'slider__item-features') {
+
+        target.nextElementSibling.classList.add('catalogue__hover--show');
+    }
+
+});

@@ -305,6 +305,7 @@ p {
 
 .catalogue__hover.catalogue__hover--slider.catalogue__hover--show {
     display: block;
+    z-index: 100;
 }
 
 .catalogue__hover--show {
