@@ -31,6 +31,9 @@ function togglePopupBg() {
     BgForPopups.classList.toggle('popup-bg--active');
 }
 
+var orderForm = document.querySelector('.popup__order');
+
+
 /*====================DESIGNER-CALL=======================*/
 
 var callToDesigner = document.querySelector('.main-header__designer--btn');
@@ -46,21 +49,39 @@ var closeDesignerForm = designerForm.querySelector('.catalogue__hover-close');
 closeDesignerForm.addEventListener('click', function () {
     togglePopupBg();
     designerForm.classList.remove("popup__designer-call--active");
+
 });
 
 /*====================SLIDER=======================*/
 
 var sliderBlock = document.querySelector('.slider__block');
-console.log(sliderBlock);
+var options;
 
-addEventListener('click', function (event) {
+sliderBlock.onclick = function (event) {
     var target = event.target;
 
-    console.log(target.className);
-
     if (target.className == 'slider__item-features') {
-
-        target.nextElementSibling.classList.add('catalogue__hover--show');
+        for (var i = 0; i < sliderBlock.children.length; i++) {
+            var getOpacity = getComputedStyle(sliderBlock.children[i]).opacity;
+            if (getOpacity == 1) {
+                    options = sliderBlock.children[i].querySelector('.catalogue__hover');
+                    options.classList.add('catalogue__hover--show');
+            }
+        }
     }
 
-});
+    if (target.className == 'catalogue__hover-close') {
+        options.classList.remove('catalogue__hover--show');
+    }
+
+    if (target.className == 'btn slider__item-btn') {
+        togglePopupBg();
+        orderForm.classList.add('popup__order--active');
+    }
+};
+
+
+
+var closeOrderForm = document.querySelector('.popup__order--active');
+
+
