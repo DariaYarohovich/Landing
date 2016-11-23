@@ -80,8 +80,55 @@ sliderBlock.onclick = function (event) {
     }
 };
 
+/*====================CLOSE ORDER FORM=======================*/
 
 
-var closeOrderForm = document.querySelector('.popup__order--active');
+orderForm.addEventListener('click', function (event) {
+    //var closeElem = orderForm.querySelector('.catalogue__hover-close');
+    var target = event.target;
+
+   if (target.tagName == 'I') {
+        togglePopupBg();
+        orderForm.classList.remove('popup__order--active');
+    }
+
+});
+
+/*====================OPEN ORDER FORM FROM CATALOG=======================*/
+
+var catalog = document.querySelector('.catalogue__items');
+
+catalog.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if (target.tagName != 'BUTTON') return;
+    togglePopupBg();
+    orderForm.classList.add('popup__order--active');
+
+});
+
+/*====================QUALITY DETAILS=======================*/
+
+var quality = document.querySelector('.quality');
+var qualityPopUp = document.querySelectorAll('.quality__popup');
+var numberOfQuality = 0;
+
+quality.addEventListener('click', function (event) {
+    var target = event.target;
+    var qualityDesks = target.className.indexOf('quality__desc');
+
+   if (qualityDesks == -1) return;
+
+    numberOfQuality = target.className.slice(-1);
+
+    qualityPopUp[numberOfQuality - 1].classList.add('quality__popup--active');
+
+});
+
+
+
+
+
+
 
 
