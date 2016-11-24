@@ -305,6 +305,7 @@ p {
 
 .catalogue__hover.catalogue__hover--slider.catalogue__hover--show {
     display: block;
+    z-index: 100;
 }
 
 .catalogue__hover--show {
@@ -1178,10 +1179,27 @@ p {
     height: 100%;
     margin-top: -43px;
     background-color: rgba(240, 243, 245, 0.9);
+    -webkit-animation: smooth  0.5s 1 linear;
+    animation: smooth  0.5s 1 linear;
+
 }
 .popup-bg--active {
     display: block;
 }
+
+@-webkit-keyframes smooth {
+    from {opacity: 0;}
+    50% {opacity: 0.5;}
+    to {opacity: 0.7;}
+}
+
+@keyframes smooth {
+    from {opacity: 0;}
+    50% {opacity: 0.5;}
+    to {opacity: 1;}
+}
+
+
 .popup__designer-call {
     display: none;
 }
@@ -1201,6 +1219,8 @@ p {
     letter-spacing: 0.4px;
     color: #45494b;
     box-shadow: 0px 6px 50px -13px;
+    -webkit-animation: smooth  0.5s 1 linear;
+    animation: smooth  0.5s 1 linear;
 }
 .catalogue__hover-close--popup {
     top: 15px;
@@ -1313,7 +1333,9 @@ p {
     background-color: #ffffff;
     box-shadow: 0px 6px 50px -13px;
     background-repeat: no-repeat;
-    background-position: -51px -31px;;
+    background-position: -51px -31px;
+    -webkit-animation: smooth  0.5s 1 linear;
+    animation: smooth  0.5s 1 linear;
 }
 .quality__popup--1 {
     background-image: url("img/quality1.png");
