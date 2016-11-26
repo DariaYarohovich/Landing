@@ -524,6 +524,16 @@ p {
     justify-content: space-between;
     flex-wrap: wrap;
 }
+.catalogue__items-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: none;
+}
+.catalogue__items--show {
+    display: flex;
+}
 .catalogue__item {
     position: relative;
     display: flex;
