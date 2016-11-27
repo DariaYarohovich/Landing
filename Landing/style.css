@@ -543,6 +543,11 @@ p {
     padding-top: 90px;
     margin-bottom: 20px;
 }
+
+.catalogue__item-img:hover {
+    cursor: pointer;
+}
+
 .catalogue__item--hide {
     display: none;
 }
@@ -638,6 +643,8 @@ p {
     border-top: 1px solid #eae3db;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    -webkit-animation: smooth  0.5s 1 linear;
+    animation: smooth  0.5s 1 linear;
 }
 .catalogue__hover--even {
     left: -538px;
@@ -654,9 +661,11 @@ p {
 .catalogue__img-block {
     position: relative;
 }
+/*
 .catalogue__img-block:hover .catalogue__hover {
-    display: block;
-}
+     display: block;
+ }
+ */
 .catalogue__hover-title {
     margin-bottom: 20px;
     font-size: 32px;

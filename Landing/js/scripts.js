@@ -101,10 +101,18 @@ var catalog = document.querySelector('.catalogue__items');
 catalog.addEventListener('click', function (event) {
     var target = event.target;
 
-    if (target.tagName != 'BUTTON') return;
-    togglePopupBg();
-    orderForm.classList.add('popup__order--active');
+    if (target.tagName == 'BUTTON') {
+        togglePopupBg();
+        orderForm.classList.add('popup__order--active');
+    }
 
+    if (target.className == 'catalogue__item-img') {
+        target.nextElementSibling.style.display = 'block';
+    }
+
+    if (target.className == 'catalogue__hover-close') {
+        target.parentNode.style.display = 'none';
+    }
 });
 
 /*====================QUALITY DETAILS=======================*/
@@ -113,22 +121,44 @@ var quality = document.querySelector('.quality');
 var qualityPopUp = document.querySelectorAll('.quality__popup');
 var numberOfQuality = 0;
 
+
 quality.addEventListener('click', function (event) {
     var target = event.target;
     var qualityDesks = target.className.indexOf('quality__desc');
 
    if (qualityDesks == -1) return;
-
     numberOfQuality = target.className.slice(-1);
-
     qualityPopUp[numberOfQuality - 1].classList.add('quality__popup--active');
 
 });
 
+var qualitiesPopupContainer = document.querySelector('.qualities__pupup-container');
+
+qualitiesPopupContainer.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.tagName != 'I') return;
+
+    for (var i = 0; i < qualitiesPopupContainer.children.length; i++) {
+        if(qualitiesPopupContainer.children[i].className.indexOf('quality__popup--active')) {
+            qualitiesPopupContainer.children[i].classList.remove('quality__popup--active');
+        }
+    }
+});
+
+/*====================FANCY BOX WRAPPER=======================*/
 
 
+/*
+(function (){
+    var allMinItemImages = document.querySelectorAll('.catalogue__hover-gall-item');
+    for (var i = 0; allMinItemImages.e; i++) {
+        var img = allMinItemImages.elements[i];
+        img.parentNode.classList.add('fancybox');
 
 
+    }
+})();
+*/
 
 
 
