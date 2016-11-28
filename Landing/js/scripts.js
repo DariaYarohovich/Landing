@@ -60,7 +60,7 @@ var options;
 sliderBlock.onclick = function (event) {
     var target = event.target;
 
-    if (target.className == 'slider__item-features') {
+    if (~target.className.indexOf('slider__item-features')) {
         for (var i = 0; i < sliderBlock.children.length; i++) {
             var getOpacity = getComputedStyle(sliderBlock.children[i]).opacity;
             if (getOpacity == 1) {
@@ -70,17 +70,17 @@ sliderBlock.onclick = function (event) {
         }
     }
 
-    if (target.className == 'catalogue__hover-close') {
+    if (~target.className.indexOf('catalogue__hover-close')) {
         options.classList.remove('catalogue__hover--show');
     }
 
-    if (target.className == 'btn slider__item-btn') {
+    if (~target.className.indexOf('slider__item-btn')) {
         togglePopupBg();
         orderForm.classList.add('popup__order--active');
     }
 };
 
-/*====================CLOSE ORDER FORM=======================*/
+/*====================ORDER FORM=======================*/
 
 
 orderForm.addEventListener('click', function (event) {
@@ -91,6 +91,8 @@ orderForm.addEventListener('click', function (event) {
         togglePopupBg();
         orderForm.classList.remove('popup__order--active');
     }
+
+
 
 });
 
@@ -104,13 +106,19 @@ catalog.addEventListener('click', function (event) {
     if (target.tagName == 'BUTTON') {
         togglePopupBg();
         orderForm.classList.add('popup__order--active');
+        var model = target.getAttribute('data-model');
+
+        var input = document.querySelector('input[name="model"]');
+        input.setAttribute('value', model);
+
+        console.log(input);
     }
 
-    if (target.className == 'catalogue__item-img') {
+    if (~target.className.indexOf('catalogue__item-img') && target.nextElementSibling) {
         target.nextElementSibling.style.display = 'block';
     }
 
-    if (target.className == 'catalogue__hover-close') {
+    if (~target.className.indexOf('catalogue__hover-close')) {
         target.parentNode.style.display = 'none';
     }
 });
@@ -147,18 +155,41 @@ qualitiesPopupContainer.addEventListener('click', function (event) {
 
 /*====================FANCY BOX WRAPPER=======================*/
 
+ (function (){
+ var allMinItemImages = document.querySelectorAll('.catalogue__hover-gall-item');
 
-/*
-(function (){
-    var allMinItemImages = document.querySelectorAll('.catalogue__hover-gall-item');
-    for (var i = 0; allMinItemImages.e; i++) {
-        var img = allMinItemImages.elements[i];
-        img.parentNode.classList.add('fancybox');
+     for (var i = 0; i < allMinItemImages.length; i++) {
+         var img = allMinItemImages[i];
 
+         if (img.parentNode.tagName == 'A') {
+             img.parentNode.setAttribute('href', img.getAttribute('src'));
+             img.parentNode.setAttribute('rel', "group");
+             img.parentNode.classList.add('fancybox');
+         }
+     }
+ }());
 
-    }
-})();
-*/
+/*====================CLOSE SUCCESS POPUP=======================*/
+
+(function () {
+    var succsessPopup = document.querySelector('.popup__designer-submit');
+
+    succsessPopup.addEventListener('click', function (event) {
+        var target = event.target;
+
+        if (target.tagName == 'I' || target.tagName == 'BUTTON') {
+            succsessPopup.style.display = 'none';
+            togglePopupBg();
+
+            designerForm.classList.remove("popup__designer-call--active");
+            designerForm.style.display = '';
+
+            orderForm.classList.remove('popup__order--active');
+            orderForm.style.display = '';
+
+        }
+    })
+}());
 
 
 
