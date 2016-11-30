@@ -77,6 +77,13 @@ sliderBlock.onclick = function (event) {
     if (~target.className.indexOf('slider__item-btn')) {
         togglePopupBg();
         orderForm.classList.add('popup__order--active');
+
+        var model = target.getAttribute('data-model');
+
+        var input = document.querySelector('input[name="model"]');
+        input.setAttribute('value', model);
+
+        console.log(input);
     }
 };
 
@@ -110,8 +117,6 @@ catalog.addEventListener('click', function (event) {
 
         var input = document.querySelector('input[name="model"]');
         input.setAttribute('value', model);
-
-        console.log(input);
     }
 
     if (~target.className.indexOf('catalogue__item-img') && target.nextElementSibling) {
@@ -155,20 +160,20 @@ qualitiesPopupContainer.addEventListener('click', function (event) {
 
 /*====================FANCY BOX WRAPPER=======================*/
 
- (function (){
- var allMinItemImages = document.querySelectorAll('.catalogue__hover-gall-item');
 
-     for (var i = 0; i < allMinItemImages.length; i++) {
-         var img = allMinItemImages[i];
+(function (){
+    var allMinItemImages = document.querySelectorAll('.catalogue__hover-gall-item');
 
-         if (img.parentNode.tagName == 'A') {
-             img.parentNode.setAttribute('href', img.getAttribute('src'));
-             img.parentNode.setAttribute('rel', "group");
-             img.parentNode.classList.add('fancybox');
-         }
-     }
- }());
+    for (var i = 0; i < allMinItemImages.length; i++) {
+        var img = allMinItemImages[i];
 
+        if (img.parentNode.tagName == 'A') {
+            img.parentNode.setAttribute('href', img.getAttribute('src'));
+            img.parentNode.setAttribute('rel', "group");
+            img.parentNode.classList.add('fancybox');
+        }
+    }
+}());
 /*====================CLOSE SUCCESS POPUP=======================*/
 
 (function () {

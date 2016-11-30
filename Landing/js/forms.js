@@ -9,7 +9,7 @@ $(function(){
 			},				
 		},
 		submitHandler: function(form) {
-			sendMail(form,'diz');
+			sendMail(form);
 		}
 	});	
 
