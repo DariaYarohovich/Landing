@@ -33,7 +33,6 @@ function togglePopupBg() {
 
 var orderForm = document.querySelector('.popup__order');
 
-
 /*====================DESIGNER-CALL=======================*/
 
 var callToDesigner = document.querySelector('.main-header__designer--btn');
@@ -86,21 +85,15 @@ sliderBlock.onclick = function (event) {
         console.log(input);
     }
 };
-
 /*====================ORDER FORM=======================*/
 
-
 orderForm.addEventListener('click', function (event) {
-    //var closeElem = orderForm.querySelector('.catalogue__hover-close');
     var target = event.target;
 
    if (target.tagName == 'I') {
         togglePopupBg();
         orderForm.classList.remove('popup__order--active');
     }
-
-
-
 });
 
 /*====================OPEN ORDER FORM FROM CATALOG=======================*/
@@ -196,5 +189,74 @@ qualitiesPopupContainer.addEventListener('click', function (event) {
     })
 }());
 
+/*====================ITEMS FROM JSON=======================*/
 
+jQuery( document ).ready( function() {
 
+function getSofas(jsonFile, placeForInput) {
+        $.getJSON(jsonFile, function(data) {
+            for(var i=0; i<data.sofas.length; i++){
+
+                var addImg = '';
+                if (data.sofas[i].addImages) {
+                    for (var j=0; j<data.sofas[i].addImages.length; j++) {
+                        addImg+= '<a class="catalogue__hover-gall-link fancybox" href="'+ data.sofas[i].addImages[j] +'"><img src="'+ data.sofas[i].addImages[j] +'" alt="" class="catalogue__hover-gall-item"></a>';
+                    }
+                }
+
+                $(placeForInput).append(
+                    '<article class="catalogue__item">' + data.sofas[i].discaunt +
+                    '<div class="catalogue__img-block">' +
+                    '<img class="catalogue__item-img" src="'+ data.sofas[i].mainPhoto +'" alt="'+ data.sofas[i].name +'" width="348" height="152">' +
+                    '<div class="catalogue__hover">' +
+                    '<i class="catalogue__hover-close"></i>' +
+                    '<p class="catalogue__hover-title block__title--bold">'+ data.sofas[i].name +'</p>' +
+                    '<div class="catalogue__hover-desc-block">' +
+                    '<div class="catalogue__hover-sizes-block--1">' +
+                    '<p class="catalogue__hover-size">Размеры</p>' +
+                    '<div class="catalogue__hover-size-item">Длина<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].long +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '<div class="catalogue__hover-size-item">Ширина<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].width +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '<div class="catalogue__hover-size-item">Высота<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].height +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '</div>' +
+                    '<div class="catalogue__hover-sizes-block--2">' +
+                    '<p class="catalogue__hover-size">Спальное место</p>' +
+                    '<div class="catalogue__hover-size-item">Длина<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].sleeperLong +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '<div class="catalogue__hover-size-item">Ширина<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].sleeperWidth +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '<div class="catalogue__hover-size-item">Высота<br> <span class="catalogue__hover-size-number">'+ data.sofas[i].sleeperHieght +'</span> <span class="catalogue__hover-size-sm">см</span></div>' +
+                    '</div>' +
+                    '<div class="catalogue__hover-color">' +
+                    '<p class="catalogue__hover-size">Любой цвет на выбор</p>' +
+                    '<div class="catalogue__hover-color-desc">Наш дизайнер приедет и покажет всю цветовую палитру</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="catalogue__hover-details-block">'+
+                    '<div class="catalogue__hover-gallery" >'+
+                    addImg +
+                    '</div>'+
+                    '<p class="catalogue__hover-details-desc">'+
+                    'Каркас: <span class="catalogue__hover-details--cont">'+ data.sofas[i].frame +'</span><br>'+
+                    'Механизм: <span class="catalogue__hover-details--cont">'+ data.sofas[i].mechanism +'</span><br>'+
+                    'Основание: <span class="catalogue__hover-details--cont">'+ data.sofas[i].base +'</span><br>'+
+                    'Обивка: <span class="catalogue__hover-details--cont">'+ data.sofas[i].upholstery +'</span><br>'+
+                    'Комплектация: <span class="catalogue__hover-details--cont">'+ data.sofas[i].equipment +'</span>'+
+                    '</p>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="catalogue__item-desc">'+
+                    '<p class="catalogue__item-name">Диван<br> <span class="catalogue__item-name--orange">'+ data.sofas[i].name +'</span></p>'+
+                    '<div class="price catalogue__item-price">'+
+                    '<span class="slider__price--old catalogue__price--old">'+ data.sofas[i].priceOld +'</span>'+
+                    '<span class="slider__price--new catalogue__price--new">'+ data.sofas[i].price +'<span> руб</span></span>'+
+                    '</div>'+
+                    '<button class="btn slider__item-btn catalogue__item-btn" data-model="'+ data.sofas[i].name +'">Заказать</button>'+
+                    '</div> ' +
+                    '</article>');
+            }
+        })
+    };
+getSofas('sofas-right.json', '#items-right');
+getSofas('sofas-corner.json', '#items-corner');
+getSofas('sofas-module.json', '#items-module');
+getSofas('sofas-puff.json', '#items-puff');
+});

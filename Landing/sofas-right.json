@@ -1,0 +1,35 @@
+{
+	"sofas": [{
+		"name": "",
+		"discaunt": "<i class=\"catalogue__spo\">35%</i>",
+		"price": "500",
+		"priceOld": "400",
+		"width": "200",
+		"height": "150",
+		"long": "200",
+		"mainPhoto": "img/Jersy_Milk.png",
+		"sleeperWidth": "100",
+		"sleeperHieght": "94",
+		"sleeperLong": "206",
+		"frame": "Массив дерева",
+		"mechanism": "Еврокнига",
+		"base": "Блок пружин",
+		"upholstery": "Ткань, экокожа",
+		"equipment": "Диван, 4 подушки, бельевой ящик",
+		"addImages": ["img/gallery_item1.png", "img/gallery_item2.png", "img/gallery_item3.png", "img/gallery_item4.png", "img/gallery_item5.png"]
+
+
+	}, {
+		"name": "Лолита",
+		"discaunt": "",
+		"price": "501",
+		"priceOld": "401",
+		"width": "201",
+		"height": "151",
+		"long": "201",
+		"mainPhoto": "img/Jersy_Milk.png",
+		"sleeperWidth": "200",
+		"sleeperHieght": "150",
+		"sleeperLong": "300"
+	}]
+}	
