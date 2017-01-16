@@ -260,3 +260,76 @@ getSofas('sofas-corner.json', '#items-corner');
 getSofas('sofas-module.json', '#items-module');
 getSofas('sofas-puff.json', '#items-puff');
 });
+
+/* test script */
+
+var name = document.querySelector('.page-header h1').innerText;
+
+var mainPhoto = document.querySelector("#my_inner_html img").getAttribute('src');
+mainPhoto = 'img' + mainPhoto.substring(31);
+
+var addImg = document.getElementById('my_inner_html').querySelectorAll('a img');
+var addImages = [];
+for (var i = 0; i < addImg.length; i++) {
+    addImages.push('img' + addImg[i].getAttribute('src').substring(31));
+}
+
+var price = document.querySelector('.divan-table .gris font b').innerText;
+var priceOld = document.querySelector('.divan-table tfoot del').innerText;
+priceOld = priceOld.split(' ').join('').slice(0,4);
+
+var long, width, height;
+var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:first-child .gris');
+var sizesClean = [];
+for (var j = 0; j < sizes.length; j++) {
+    sizesClean.push(sizes[j].innerText);
+}
+[long, width, height] = sizesClean;
+
+
+var sleeperLong, sleeperWidth, sleeperHeight;
+var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:nth-child(2) .gris');
+var sizesClean = [];
+for (var j = 0; j < sizes.length; j++) {
+    sizesClean.push(sizes[j].innerText);
+}
+[sleeperLong, sleeperWidth, sleeperHeight] = sizesClean;
+
+
+var mechanism, base, upholstery;
+var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:nth-child(4) .gris');
+var sizesClean = [];
+for (var j = 0; j < sizes.length; j++) {
+    sizesClean.push(sizes[j].innerText);
+}
+[mechanism, base, upholstery] = sizesClean;
+
+var equipment;
+var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:nth-child(5) .gris');
+var sizesClean = [];
+for (var j = 0; j < sizes.length; j++) {
+    sizesClean.push(sizes[j].innerText);
+}
+equipment = sizesClean.join(', ');
+
+var jsonObj = `{
+        "name": "${name}",
+		"discaunt": "<i class=\"catalogue__spo\">35%</i>",
+		"price": "${price}",
+		"priceOld": "${priceOld}",
+		"width": ""${width}"",
+		"height": "${height}",
+		"long": "${long}",
+		"mainPhoto": "${mainPhoto}",
+		"sleeperWidth": "${sleeperWidth}",
+		"sleeperHieght": "${sleeperHeight}",
+		"sleeperLong": "${sleeperLong}",
+		"frame": "Массив дерева",
+		"mechanism": "${mechanism}",
+		"base": "${base}",
+		"upholstery": "${upholstery}",
+		"equipment": "${equipment}",
+		"addImages": "${addImages}"
+}`;
+
+console.log(jsonObj);
