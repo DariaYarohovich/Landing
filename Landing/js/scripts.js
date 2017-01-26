@@ -1,30 +1,3 @@
-/*================MAP=================*/
-ymaps.ready(function () {
-    var myMap = new ymaps.Map('map', {
-            center: [53.932324, 27.509064],
-            zoom: 14
-        }, {
-            searchControlProvider: 'yandex#search'
-        }),
-        myPlacemark = new ymaps.Placemark([53.935324, 27.494064], {
-            hintContent: "Пр-т Победителей, 103, оф. 1117",
-            balloonContent: "MebelLive"
-        }, {
-            // Опции.
-            // Необходимо указать данный тип макета.
-            iconLayout: 'default#image',
-            // Своё изображение иконки метки.
-            iconImageHref: "img/map-mark.png",
-            // Размеры метки.
-            iconImageSize: [58, 96],
-            // Смещение левого верхнего угла иконки относительно
-            // её "ножки" (точки привязки).
-            iconImageOffset: [0, 0]
-        });
-
-    myMap.geoObjects.add(myPlacemark);
-});
-
 var BgForPopups = document.querySelector('.popup-bg');
 
 function togglePopupBg() {
@@ -255,7 +228,7 @@ function getSofas(jsonFile, placeForInput) {
             }
         })
     };
-getSofas('sofas-right.json', '#items-right');
+getSofas('sofas-direct.json', '#items-right');
 getSofas('sofas-corner.json', '#items-corner');
 getSofas('sofas-module.json', '#items-module');
 getSofas('sofas-puff.json', '#items-puff');
@@ -266,12 +239,12 @@ getSofas('sofas-puff.json', '#items-puff');
 var name = document.querySelector('.page-header h1').innerText;
 
 var mainPhoto = document.querySelector("#my_inner_html img").getAttribute('src');
-mainPhoto = 'img' + mainPhoto.substring(31);
+mainPhoto = 'img/sofas' + mainPhoto.substring(31);
 
 var addImg = document.getElementById('my_inner_html').querySelectorAll('a img');
 var addImages = [];
 for (var i = 0; i < addImg.length; i++) {
-    addImages.push('img' + addImg[i].getAttribute('src').substring(31));
+    addImages.push('img/sofas' + addImg[i].getAttribute('src').substring(31));
 }
 
 var price = document.querySelector('.divan-table .gris font b').innerText;
@@ -303,6 +276,7 @@ for (var j = 0; j < sizes.length; j++) {
     sizesClean.push(sizes[j].innerText);
 }
 [mechanism, base, upholstery] = sizesClean;
+base = base.replace(/\n+$/m, '');
 
 var equipment;
 var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:nth-child(5) .gris');
@@ -317,7 +291,7 @@ var jsonObj = `{
 		"discaunt": "<i class=\"catalogue__spo\">35%</i>",
 		"price": "${price}",
 		"priceOld": "${priceOld}",
-		"width": ""${width}"",
+		"width": "${width}",
 		"height": "${height}",
 		"long": "${long}",
 		"mainPhoto": "${mainPhoto}",
@@ -329,7 +303,7 @@ var jsonObj = `{
 		"base": "${base}",
 		"upholstery": "${upholstery}",
 		"equipment": "${equipment}",
-		"addImages": "${addImages}"
+		"addImages": ${addImages}
 }`;
 
 console.log(jsonObj);
