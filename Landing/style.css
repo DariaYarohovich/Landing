@@ -261,11 +261,10 @@ p {
     cursor: pointer;
     text-align: center;
 }
-.slider__item-desc--spo::before {
+.slider__item-desc--spo {
     position: absolute;
     top: -45px;
     left: -57px;
-    content: "25%";
     width: 109px;
     height: 109px;
     background-image: url(img/spo_icon.png);
@@ -558,6 +557,7 @@ p {
     position: absolute;
     z-index: 2;
     top: 23px;
+    left: 35px;
     display: block;
     content: "";
     width: 79px;
@@ -689,7 +689,8 @@ p {
 }
 .catalogue__hover-sizes-block--1 {
     width: 265px;
-    margin-right: 110px;
+    /* margin-right: 110px; */
+    margin-right: 58px;
 }
 .catalogue__hover-sizes-block--2 {
     width: 250px;
@@ -722,7 +723,7 @@ p {
     border: 1px solid #f58327;
 }
 .catalogue__hover-gall-link:nth-child(3n) {
-    margin-right: 0;
+/*     margin-right: 0; */
 }
 .catalogue__hover-gall-link:hover,
 .catalogue__hover-gall-link:active {
@@ -968,7 +969,7 @@ p {
 }
 .types__desc-title {
     font-family: "Rubik", "Arial", sans-serif;
-    font-size: 36px;
+    font-size: 35px;
     text-transform: uppercase;
     color: #c1cf2f;
     letter-spacing: 1.4px;
@@ -1357,9 +1358,36 @@ p {
     animation: smooth  0.5s 1 linear;
 }
 .quality__popup--1 {
-    background-image: url("img/quality1.png");
-    background-size: 125%;
+    background-image: url(img/pluses/bel-production.png);
+    background-position: 0px;
 }
+
+.quality__popup--2 {
+    background-image: url(img/pluses/filling-HR.png);
+    background-position: 0px;
+}
+
+.quality__popup--3 {
+    background-image: url(img/pluses/sizes.png);
+    background-position: 0px;
+}
+
+.quality__popup--4 {
+    background-image: url(img/pluses/spring-block.png);
+    background-position: 0px;
+}
+
+.quality__popup--5 {
+    background-image: url(img/pluses/trim.png);
+    background-position: 0px;
+}
+
+.quality__popup--6 {
+    background-image: url(img/pluses/wood.png);
+    background-position: 0px;
+}
+
+
 .quality__popup--active {
     display: block;
 }
