@@ -142,7 +142,7 @@ qualitiesPopupContainer.addEventListener('click', function (event) {
 }());
 /*====================CLOSE SUCCESS POPUP=======================*/
 
-(function () {
+
     var succsessPopup = document.querySelector('.popup__designer-submit');
 
     succsessPopup.addEventListener('click', function (event) {
@@ -150,17 +150,17 @@ qualitiesPopupContainer.addEventListener('click', function (event) {
 
         if (target.tagName == 'I' || target.tagName == 'BUTTON') {
             succsessPopup.style.display = 'none';
-            togglePopupBg();
+            BgForPopups.style = null;
+            BgForPopups.classList.remove('popup-bg--active');
 
             designerForm.classList.remove("popup__designer-call--active");
-            designerForm.style.display = '';
+            designerForm.style = '';
 
             orderForm.classList.remove('popup__order--active');
             orderForm.style.display = '';
 
         }
-    })
-}());
+    });
 
 /*====================ITEMS FROM JSON=======================*/
 
@@ -177,8 +177,16 @@ function getSofas(jsonFile, placeForInput) {
                     }
                 }
 
+                var sale = function() {
+                    if (data.sofas[i].price && data.sofas[i].priceOld) {
+                        var discount = Math.round(100 - (data.sofas[i].price / data.sofas[i].priceOld  * 100));
+                        return '<i class=\"catalogue__spo\">'+ discount + ' %</i>';
+                    }
+                    return '';
+                };
+
                 $(placeForInput).append(
-                    '<article class="catalogue__item">' + data.sofas[i].discaunt +
+                    '<article class="catalogue__item">' + sale() +
                     '<div class="catalogue__img-block">' +
                     '<img class="catalogue__item-img" src="'+ data.sofas[i].mainPhoto +'" alt="'+ data.sofas[i].name +'" width="348" height="152">' +
                     '<div class="catalogue__hover">' +
@@ -247,6 +255,11 @@ for (var i = 0; i < addImg.length; i++) {
     addImages.push('img/sofas' + addImg[i].getAttribute('src').substring(31));
 }
 
+addImages = addImages.map( function(elem) {
+    return elem = '\"'+ elem + '\"';
+});
+
+
 var price = document.querySelector('.divan-table .gris font b').innerText;
 var priceOld = document.querySelector('.divan-table tfoot del').innerText;
 priceOld = priceOld.split(' ').join('').slice(0,4);
@@ -276,7 +289,19 @@ for (var j = 0; j < sizes.length; j++) {
     sizesClean.push(sizes[j].innerText);
 }
 [mechanism, base, upholstery] = sizesClean;
-base = base.replace(/\n+$/m, '');
+
+function cleanStr(str) {
+    str = str.split('\n');
+    str = str.filter(function(item) {
+        if (item) {
+            return item;
+        }
+    });
+    return str.join(', ');
+}
+
+base = cleanStr(base);
+upholstery = cleanStr(upholstery);
 
 var equipment;
 var sizes = document.querySelectorAll('.divan-table')[1].querySelectorAll('tbody tr:nth-child(5) .gris');
@@ -288,7 +313,7 @@ equipment = sizesClean.join(', ');
 
 var jsonObj = `{
         "name": "${name}",
-		"discaunt": "<i class=\"catalogue__spo\">35%</i>",
+		"discaunt": "<i class=\"catalogue__spo>\">35%</i>",
 		"price": "${price}",
 		"priceOld": "${priceOld}",
 		"width": "${width}",
@@ -303,7 +328,7 @@ var jsonObj = `{
 		"base": "${base}",
 		"upholstery": "${upholstery}",
 		"equipment": "${equipment}",
-		"addImages": ${addImages}
+		"addImages": [${addImages}]
 }`;
 
 console.log(jsonObj);
