@@ -557,6 +557,7 @@ p {
     position: absolute;
     z-index: 2;
     top: 23px;
+    left: 35px;
     display: block;
     content: "";
     width: 79px;
@@ -688,7 +689,8 @@ p {
 }
 .catalogue__hover-sizes-block--1 {
     width: 265px;
-    margin-right: 110px;
+    /* margin-right: 110px; */
+    margin-right: 58px;
 }
 .catalogue__hover-sizes-block--2 {
     width: 250px;
@@ -721,7 +723,7 @@ p {
     border: 1px solid #f58327;
 }
 .catalogue__hover-gall-link:nth-child(3n) {
-    margin-right: 0;
+/*     margin-right: 0; */
 }
 .catalogue__hover-gall-link:hover,
 .catalogue__hover-gall-link:active {
